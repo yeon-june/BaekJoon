@@ -33,7 +33,5 @@ for t in range(T):
             elif card_dict['A'][j] < card_dict['B'][j]:
                 print('B')
                 break
-            else:
-                pass
 
 

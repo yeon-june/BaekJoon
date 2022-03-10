@@ -21,7 +21,6 @@ def bingo_call(bingo_board, check_board, call):
         N += 1
         for key in bingo_board.keys():
             for i in range(5):
-                #
                 if num == bingo_board[key][i]:
                     check_board[key] += 1
             # 빙고 3줄 일때 멈추기
