@@ -1,5 +1,5 @@
 def calcYear(M, N, x, y):
-    # k년 -> (k-x) % M == 0 and (k-y) % N == 0
+    # k년 -> k = M*a + x | k = N*b +y
     while x <= M * N:
         if (x - y) % N == 0:
             return x

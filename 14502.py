@@ -20,7 +20,7 @@ for n in range(N):
             wall_tmp.append((n, m))
 vir_queue1 = deepcopy(vir_queue)
 
-
+# 벽 위치가 정해졌을 때 bfs 작동
 def bfs():
     while vir_queue:
         x,y = vir_queue.popleft()
@@ -31,7 +31,7 @@ def bfs():
                 arr1[nx][ny] = 2
                 vir_queue.append((nx, ny))
 
-
+# 0인 위치 중 벽을 더 세울 수 있는 경우, 
 wall_combi = combinations(wall_tmp, 3)
 max_safe = 0
 for tmp in wall_combi:

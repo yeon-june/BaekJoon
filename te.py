@@ -1,36 +1,50 @@
-N = int(input())
-M = int(input())
-if M != 0:
-    la = list(map(str, input()))
+from collections import deque
+import sys
 
-    N_1, N_2 = N, N
+def dfs(i):
+    global correct, dpt
+    # print('초기점 : ',p)
+    # print('깊이 : ',dpt)
+    # print(visited)
+    for k in range(len(adj[i])):
+        if visited[adj[i][k]] == 0:
+            visited[adj[i][k]] = 1
+            dpt += 1
+            dfs(adj[i][k])
 
-    while 1:
+        # 다시 초기점으로 돌아왔을 때,
+        # 홀수각형 사이클이면 이분 불가능
+        elif adj[i][k] == p and dpt > 2:
+            if dpt%2 == 1:
+                correct = 1
+            return
 
-        if not set(map(str, str(N_1))) & set(la) and not set(map(str, str(N_2))) & set(la) and N_2 >= 0:
-            k = N_1
-            m = min([len(str(N_1)),len(str(N_2))])
-            break
-        elif not set(map(str, str(N_1))) & set(la):
-            k = N_1
-            m = len(str(N_1))
-            break
-        elif not set(map(str, str(N_2))) & set(la):
-            if N_2 >= 0:
-                k = N_2
-                m = len(str(N_2))
+    else:        
+        dpt -= 1
+        visited[i] = 0
+        return
+
+
+K = int(input())
+for _ in range(K):
+    N, M = map(int, sys.stdin.readline().split())
+    adj = deque()
+    for _ in range(N+1):
+        adj.append([])
+    for _ in range(M):
+        a,b = map(int, sys.stdin.readline().split())
+        adj[a].append(b)
+        adj[b].append(a)
+    correct = 0
+    ans = 'YES'
+    for p in range(N+1):
+        visited = [0] * (N+1)
+        if sum(adj[p]) != 0 and visited[p] == 0:
+            visited[p] = 1
+            dpt = 1
+            dfs(p)
+            if correct == 1:
+                ans = 'NO'
                 break
-
-        if N_1 == 100 or N_2 == 100:
-            k = 100
-            m = 3
-            break
-
-        N_1 += 1
-        N_2 -= 1
-
-
-    print(min(abs(N-k) + m, abs(N-100)))
-
-else:
-    print(min([len(str(N)), abs(100-N)]))
+    
+    print(ans)
