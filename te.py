@@ -1,1 +1,1 @@
-print([0] * 10)
+print(round(1.5))
