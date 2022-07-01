@@ -1,11 +1,11 @@
 def isPrime(num):
     if num == 1:
-        return False
+        return 0
     else:
         for n in range(2, int(num**0.5)+1):
             if num % n == 0:
-                return False
-        return True
+                return 0
+        return 1
 
 N = int(input())
 while N:

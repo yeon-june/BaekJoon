@@ -14,7 +14,6 @@ while cnt < K:
             arr[i] = 0
             erased = i
             cnt += 1
-            # print(erased)
 
             while erased + i <= N:
                 if cnt == K:
@@ -23,7 +22,6 @@ while cnt < K:
                 if arr[erased]:
                     arr[erased] = 0
                     cnt += 1
-                # print(erased)
 
         if cnt >= K:
             break
